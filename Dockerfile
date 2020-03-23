@@ -1,4 +1,4 @@
-FROM hillyu/alpine-scipy-base:latest
+FROM hillyu/alpine-python3-scipy-base:latest
 RUN echo "|--> Updating" \
 	&& apk update && apk upgrade \
     && apk add --no-cache --virtual=.build-deps \
