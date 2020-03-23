@@ -2,7 +2,7 @@ FROM hillyu/alpine-python3-scipy-base:latest
 RUN echo "|--> Updating" \
 	&& apk update && apk upgrade \
     && apk add --no-cache --virtual=.build-deps \
-         git \
+         git build-base\
 	&& echo "|--> Install PyTorch" \
 	&& git clone --recursive https://github.com/pytorch/pytorch \
 	&& cd pytorch && python setup.py install \
