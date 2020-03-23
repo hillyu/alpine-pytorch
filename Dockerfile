@@ -1,12 +1,4 @@
-FROM scipy-alpine:test
-LABEL maintainer="Juliano Petronetto <juliano@petronetto.com.br>" \
-	name="PyTorch Alpine" \
-	description="PyTorch in Alpine Linux" \
-	url="https://hub.docker.com/r/petronetto/pytorch-alpine" \
-	vcs-url="https://github.com/petronetto/pytorch-alpine" \
-	vendor="Petronetto DevTech" \
-	version="1.0"
-	
+FROM hillyu/alpine-scipy-base:latest
 RUN echo "|--> Updating" \
 	&& apk update && apk upgrade \
     && apk add --no-cache --virtual=.build-deps \
@@ -24,10 +16,6 @@ RUN echo "|--> Updating" \
 	&& apk del .build-deps \
 	&& find /usr/lib -name __pycache__ | xargs rm -r \
 	&& rm -rf /root/.[acpw]*
-	
-EXPOSE 5000
-	
-#WORKDIR /notebooks
 	
 #CMD ["jupyter", "notebook", "--port=5000", "--no-browser", \
 	#"--allow-root", "--ip=0.0.0.0", "--NotebookApp.token="]
