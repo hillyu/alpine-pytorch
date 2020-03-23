@@ -1,8 +1,9 @@
 FROM hillyu/alpine-python3-scipy-base:latest
+ARG alpine_deps="git build-base cmake"
 RUN echo "|--> Updating" \
 	&& apk update && apk upgrade \
     && apk add --no-cache --virtual=.build-deps \
-         git build-base\
+         ${alpine_deps}\
 	&& echo "|--> Install PyTorch" \
 	&& git clone --recursive https://github.com/pytorch/pytorch \
 	&& cd pytorch && python setup.py install \
